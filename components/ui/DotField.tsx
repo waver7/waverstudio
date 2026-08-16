@@ -80,41 +80,43 @@ export function DotField() {
           const twinkle = reduce
             ? 0
             : 0.5 + 0.5 * Math.sin(time * 0.0016 + (c * 0.55 + r * 0.42));
-          let alpha = 0.05 + twinkle * 0.05;
+          let alpha = 0.1 + twinkle * 0.05; // muted lavender base
 
-          // brightness from drifting blobs
+          // brightness from slow drifting blobs (kept restrained)
           let blobBoost = 0;
           for (let i = 0; i < blobs.length; i++) {
             const dx = x - bx[i];
             const dy = y - by[i];
             const d2 = dx * dx + dy * dy;
             const rr = blobs[i].r * blobs[i].r;
-            if (d2 < rr) blobBoost += (1 - d2 / rr) * 0.22;
+            if (d2 < rr) blobBoost += (1 - d2 / rr) * 0.14;
           }
           alpha += blobBoost;
 
-          // cursor halo
+          // cursor field of influence — soft, distance-based (not a hard spotlight)
           let cursorK = 0;
           if (mouse.active) {
             const dx = x - mouse.x;
             const dy = y - mouse.y;
             const d = Math.sqrt(dx * dx + dy * dy);
-            if (d < CURSOR_R) cursorK = 1 - d / CURSOR_R;
+            if (d < CURSOR_R) {
+              const t = 1 - d / CURSOR_R;
+              cursorK = t * t; // ease-in so falloff feels soft
+            }
           }
 
           let radius = DOT;
           let color: string;
-          if (cursorK > 0) {
-            // blend toward brand violet/blue near the cursor
-            alpha = Math.min(0.85, alpha + cursorK * 0.7);
-            radius = DOT + cursorK * 1.1;
-            const mix = cursorK;
-            const rC = Math.round(120 + mix * 88); // -> 208
-            const gC = Math.round(120 + mix * -20);
-            const bC = Math.round(200 + mix * 55);
+          if (cursorK > 0.001) {
+            // energise toward violet (#A855F7 / #C044FF) near the pointer
+            alpha = Math.min(0.9, alpha + cursorK * 0.8);
+            radius = DOT + cursorK * 1.3; // subtle 5–15% scale-up region
+            const rC = Math.round(190 + cursorK * -22); // 190 -> 168
+            const gC = Math.round(185 + cursorK * -100); // 185 -> 85
+            const bC = Math.round(210 + cursorK * 37); // 210 -> 247
             color = `rgba(${rC},${gC},${bC},${alpha})`;
           } else {
-            color = `rgba(150,155,225,${alpha})`;
+            color = `rgba(190,185,210,${alpha})`;
           }
 
           if (alpha <= 0.045) continue; // skip near-invisible dots

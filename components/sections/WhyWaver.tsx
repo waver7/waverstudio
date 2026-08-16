@@ -23,7 +23,8 @@ export function WhyWaver() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="surface flex flex-col p-6"
+                data-cursor="frame"
+                className="surface flex flex-col p-6 transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-bg text-brand-violet">
                   <Icon className="h-5 w-5" aria-hidden />

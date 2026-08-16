@@ -36,10 +36,16 @@ body {
 }
 
 /* When the reticle cursor is active, hide the native pointer on fine-pointer
-   devices. Text inputs keep their caret; interactive text still keeps a hint. */
+   devices — but keep the native text cursor on inputs and editable regions. */
 html.wv-cursor,
 html.wv-cursor * {
   cursor: none !important;
+}
+html.wv-cursor input,
+html.wv-cursor textarea,
+html.wv-cursor select,
+html.wv-cursor [contenteditable="true"] {
+  cursor: auto !important;
 }
 
 ::selection {

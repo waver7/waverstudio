@@ -31,8 +31,9 @@ export function SpotlightCard({
     <Comp
       ref={ref as never}
       onMouseMove={onMove}
+      data-cursor="frame"
       className={cn(
-        "group relative overflow-hidden rounded-card border border-line bg-bg-card transition-colors duration-300 hover:border-line-strong",
+        "group relative overflow-hidden rounded-card border border-line bg-bg-card transition-[colors,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[0_18px_40px_-24px_rgba(168,85,247,0.5)]",
         className,
       )}
       style={{ boxShadow: "inset 0 1px 0 0 rgba(255,255,255,0.04)" }}

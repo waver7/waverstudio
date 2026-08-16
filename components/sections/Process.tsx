@@ -35,7 +35,8 @@ export function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="surface p-6"
+                data-cursor="frame"
+                className="surface p-6 transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-line-strong bg-bg font-mono text-sm text-ink">
                   {step.n}
