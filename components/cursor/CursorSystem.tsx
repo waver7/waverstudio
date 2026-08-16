@@ -37,13 +37,13 @@ export function CursorSystem() {
   // spring configs (calmer + snappier under reduced motion)
   const posCfg = reduce
     ? { stiffness: 1400, damping: 90 }
-    : { stiffness: 550, damping: 42, mass: 0.6 };
+    : { stiffness: 900, damping: 34, mass: 0.42 }; // snappier follow
   const sizeCfg = reduce
     ? { stiffness: 1400, damping: 90 }
     : { stiffness: 300, damping: 26, mass: 0.7 };
   const rotCfg = reduce
     ? { stiffness: 1200, damping: 90 }
-    : { stiffness: 200, damping: 18 };
+    : { stiffness: 260, damping: 15 }; // a little overshoot for physicality
 
   // targets we .set() from the rAF loop; springs follow them
   const tX = useMotionValue(0);
@@ -182,8 +182,8 @@ export function CursorSystem() {
       const vy = state.my - state.py;
       state.px = state.mx;
       state.py = state.my;
-      state.svx = state.svx * 0.75 + vx * 0.25;
-      state.svy = state.svy * 0.75 + vy * 0.25;
+      state.svx = state.svx * 0.6 + vx * 0.4; // more reactive to velocity
+      state.svy = state.svy * 0.6 + vy * 0.4;
 
       if (state.needMeasure && state.target) {
         measure(state.target);
@@ -208,10 +208,11 @@ export function CursorSystem() {
         tY.set(state.my);
         tW.set(size + breathe);
         tH.set(size + breathe);
+        // velocity tilt: lean toward the movement direction, stronger & capped
         tR.set(
           reduce
             ? 0
-            : Math.max(-20, Math.min(20, state.svx * 0.7 + state.svy * 0.22)),
+            : Math.max(-30, Math.min(30, state.svx * 1.4 + state.svy * 0.5)),
         );
         tDot.set(1);
         tOp.set(1);
