@@ -23,11 +23,23 @@ html {
   }
 }
 
-body {
+html {
   background-color: #050608;
+}
+
+body {
+  /* transparent so the fixed DotField canvas (-z-10) shows through */
+  background-color: transparent;
   color: #f7f8fa;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* When the reticle cursor is active, hide the native pointer on fine-pointer
+   devices. Text inputs keep their caret; interactive text still keeps a hint. */
+html.wv-cursor,
+html.wv-cursor * {
+  cursor: none !important;
 }
 
 ::selection {
