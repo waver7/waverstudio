@@ -19,15 +19,17 @@ const columns = [
     links: [
       { label: "About", href: "/#about" },
       { label: "Process", href: "/#process" },
-      { label: "Work", href: "/#work" },
+      { label: "Insights", href: "/insights" },
+      { label: "FAQ", href: "/#faq" },
       { label: "Contact", href: "/#contact" },
     ],
   },
   {
     title: "Local",
     links: [
-      { label: "Miamisburg, Ohio", href: "/miamisburg-oh" },
-      { label: "45342", href: "/miamisburg-oh" },
+      { label: "Miamisburg, OH", href: "/miamisburg-oh" },
+      { label: "Centerville, OH", href: "/centerville-oh" },
+      { label: "Kettering, OH", href: "/kettering-oh" },
       { label: "Dayton Area", href: "/miamisburg-oh" },
     ],
   },

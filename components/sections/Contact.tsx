@@ -1,5 +1,6 @@
 import { ContactWizard } from "@/components/forms/ContactWizard";
 import { Reveal } from "@/components/ui/Reveal";
+import { site } from "@/lib/site";
 
 export function Contact() {
   return (
@@ -33,6 +34,19 @@ export function Contact() {
                 </li>
               ))}
             </ul>
+            {site.bookingUrl && (
+              <p className="mt-8 text-sm text-ink-muted">
+                Prefer to talk?{" "}
+                <a
+                  href={site.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink underline decoration-line-strong underline-offset-4 hover:decoration-brand-violet"
+                >
+                  Book a 15-minute call →
+                </a>
+              </p>
+            )}
           </div>
         </Reveal>
 

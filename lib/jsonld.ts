@@ -41,6 +41,18 @@ export const localBusinessLd = {
   ],
 };
 
+export function faqLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.q,
+      acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+  };
+}
+
 export function serviceLd(name: string, description: string, url: string) {
   return {
     "@context": "https://schema.org",

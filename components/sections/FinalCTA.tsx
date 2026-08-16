@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/Badge";
 import { GradientButton } from "@/components/ui/GradientButton";
 import { GradientText } from "@/components/ui/GradientText";
 import { Reveal } from "@/components/ui/Reveal";
+import { site } from "@/lib/site";
 
 export function FinalCTA() {
   return (
@@ -35,9 +36,20 @@ export function FinalCTA() {
                 <GradientButton href="/#contact" variant="solid" size="lg">
                   Get My Free AI Audit <ArrowRight className="h-4 w-4" />
                 </GradientButton>
-                <GradientButton href="/#contact" variant="ghost" size="lg">
-                  Talk to WaverStudio <ArrowRight className="h-4 w-4" />
-                </GradientButton>
+                {site.bookingUrl ? (
+                  <GradientButton
+                    href={site.bookingUrl}
+                    variant="ghost"
+                    size="lg"
+                    external
+                  >
+                    Book a Call <ArrowRight className="h-4 w-4" />
+                  </GradientButton>
+                ) : (
+                  <GradientButton href="/#contact" variant="ghost" size="lg">
+                    Talk to WaverStudio <ArrowRight className="h-4 w-4" />
+                  </GradientButton>
+                )}
               </div>
               <p className="mt-6 font-mono text-[11px] text-ink-muted">
                 Local to Miamisburg • Remote-friendly • No commitment

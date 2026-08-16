@@ -9,11 +9,15 @@ import { UseCases } from "@/components/sections/UseCases";
 import { AIFrontDesk } from "@/components/sections/AIFrontDesk";
 import { Process } from "@/components/sections/Process";
 import { WhyWaver } from "@/components/sections/WhyWaver";
+import { HowWeWork } from "@/components/sections/HowWeWork";
 import { TechSection } from "@/components/sections/TechSection";
 import { ExampleProjects } from "@/components/sections/ExampleProjects";
 import { LocalSection } from "@/components/sections/LocalSection";
+import { Faq } from "@/components/sections/Faq";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Contact } from "@/components/sections/Contact";
+import { faqLd } from "@/lib/jsonld";
+import { faqs } from "@/lib/faq";
 
 export default function HomePage() {
   return (
@@ -29,13 +33,19 @@ export default function HomePage() {
         <AIFrontDesk />
         <Process />
         <WhyWaver />
+        <HowWeWork />
         <TechSection />
         <ExampleProjects />
         <LocalSection />
+        <Faq />
         <FinalCTA />
         <Contact />
       </main>
       <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd(faqs)) }}
+      />
     </>
   );
 }

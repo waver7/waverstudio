@@ -13,6 +13,7 @@ type FormState = {
   business: string;
   email: string;
   phone: string;
+  company: string; // honeypot
 };
 
 const empty: FormState = {
@@ -22,12 +23,14 @@ const empty: FormState = {
   business: "",
   email: "",
   phone: "",
+  company: "",
 };
 
 export function ContactWizard() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<FormState>(empty);
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+  const [error, setError] = useState<string | null>(null);
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
@@ -42,11 +45,31 @@ export function ContactWizard() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canSubmit) return;
+    if (!canSubmit || status === "submitting") return;
     setStatus("submitting");
-    // No backend configured yet — simulate a graceful submit.
-    await new Promise((r) => setTimeout(r, 900));
-    setStatus("done");
+    setError(null);
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+      setStatus("done");
+    } catch (err) {
+      setStatus("idle");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.",
+      );
+    }
   };
 
   if (status === "done") {
@@ -190,6 +213,23 @@ export function ContactWizard() {
             </Panel>
           )}
         </AnimatePresence>
+
+        {/* honeypot — hidden from real users */}
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+          value={form.company}
+          onChange={(e) => set("company", e.target.value)}
+          className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
+        />
+
+        {error && (
+          <p className="mt-4 rounded-lg border border-brand-magenta/30 bg-brand-magenta/10 px-3.5 py-2.5 text-sm text-ink">
+            {error}
+          </p>
+        )}
       </div>
 
       {/* controls */}

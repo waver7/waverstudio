@@ -4,8 +4,11 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { organizationLd, localBusinessLd } from "@/lib/jsonld";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { DotField } from "@/components/ui/DotField";
 import { CursorSystem } from "@/components/cursor/CursorSystem";
+import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -74,6 +77,9 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <StickyMobileCTA />
+        <Analytics />
+        <SpeedInsights />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}

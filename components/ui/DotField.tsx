@@ -20,10 +20,13 @@ export function DotField() {
     const ctx: CanvasRenderingContext2D = context;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
 
-    const SPACING = 28; // px between dots
+    // Wider spacing (fewer dots) on phones for less overdraw.
+    const SPACING = coarse ? 34 : 28; // px between dots
     const DOT = 1.15; // base radius
     const CURSOR_R = 150; // cursor influence radius
+    const FRAME_MS = 1000 / 34; // cap ~34fps — plenty for a subtle drift
 
     let w = 0;
     let h = 0;
@@ -130,9 +133,14 @@ export function DotField() {
 
     let raf = 0;
     let running = true;
+    let lastDraw = 0;
     function loop(t: number) {
       if (!running) return;
-      draw(t);
+      // throttle to the target frame rate to keep CPU/battery use low
+      if (t - lastDraw >= FRAME_MS) {
+        lastDraw = t;
+        draw(t);
+      }
       if (!reduce) raf = requestAnimationFrame(loop);
     }
 
