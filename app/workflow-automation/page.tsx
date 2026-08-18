@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageShell>
-      <ServiceDetail service={service} intro={copy.intro} outcomes={copy.outcomes} />
+      <ServiceDetail service={service} intro={copy.intro} outcomes={copy.outcomes} example={copy.example} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -3,6 +3,7 @@ export type ServicePageCopy = {
   outcomes: string[];
   metaTitle: string;
   metaDescription: string;
+  example: { scenario: string; steps: string[] };
 };
 
 export const servicePageCopy: Record<string, ServicePageCopy> = {
@@ -18,6 +19,16 @@ export const servicePageCopy: Record<string, ServicePageCopy> = {
     metaTitle: "AI Agents for Local Businesses",
     metaDescription:
       "Custom AI agents that answer questions, qualify leads and support your team 24/7 — built and connected to your business tools by WaverStudio.",
+    example: {
+      scenario:
+        "A service company was losing after-hours website leads to slow replies.",
+      steps: [
+        "We connected an agent to their site, calendar and CRM.",
+        "It answers common questions and asks a few qualifying ones.",
+        "Qualified leads get a booking link and land in the CRM.",
+        "Anything it isn't sure about is handed to a person with the full transcript.",
+      ],
+    },
   },
   "workflow-automation": {
     intro:
@@ -31,6 +42,16 @@ export const servicePageCopy: Record<string, ServicePageCopy> = {
     metaTitle: "Workflow Automation",
     metaDescription:
       "Turn repetitive multi-step work into reliable automated processes. Workflow automation for businesses in Miamisburg and the Dayton area.",
+    example: {
+      scenario:
+        "Every new lead meant the same eight manual steps across three apps.",
+      steps: [
+        "We mapped the workflow end to end with the team.",
+        "A single trigger now creates the CRM record and sends the response.",
+        "The appointment link, owner alert and follow-up all fire automatically.",
+        "The team went from eight manual steps to one.",
+      ],
+    },
   },
   "salesforce-crm": {
     intro:
@@ -44,6 +65,16 @@ export const servicePageCopy: Record<string, ServicePageCopy> = {
     metaTitle: "CRM & Salesforce Development",
     metaDescription:
       "Salesforce and custom CRM development with automation and integrations built in. Salesforce consulting for the Dayton, Ohio area.",
+    example: {
+      scenario:
+        "A team ran their pipeline in spreadsheets nobody trusted or kept current.",
+      steps: [
+        "We modelled their real stages and hand-off points in the CRM.",
+        "Records update themselves as work moves through the pipeline.",
+        "Automations handle the reminders and status changes staff used to forget.",
+        "Reporting finally matches reality because the data stays clean.",
+      ],
+    },
   },
   integrations: {
     intro:
@@ -57,6 +88,16 @@ export const servicePageCopy: Record<string, ServicePageCopy> = {
     metaTitle: "Integrations & APIs",
     metaDescription:
       "Connect the tools your business already uses with REST APIs, webhooks and reliable integrations built by WaverStudio.",
+    example: {
+      scenario:
+        "The same customer detail was being typed into three separate systems.",
+      steps: [
+        "We identified the source of truth for each piece of data.",
+        "Webhooks and APIs now push changes between the systems in real time.",
+        "An older tool with no modern API was wrapped in a small connector.",
+        "Information flows once and stays in sync everywhere.",
+      ],
+    },
   },
   "web-development": {
     intro:
@@ -70,6 +111,16 @@ export const servicePageCopy: Record<string, ServicePageCopy> = {
     metaTitle: "Web Development & Customer Portals",
     metaDescription:
       "Fast, modern websites, customer portals and web applications for local businesses. Web development in Miamisburg and Dayton, Ohio.",
+    example: {
+      scenario:
+        "A dated site loaded slowly and gave customers no way to self-serve.",
+      steps: [
+        "We rebuilt it fast, mobile-first and focused on one clear action.",
+        "A secure portal lets customers book and check status themselves.",
+        "The back-and-forth of phone tag and email dropped sharply.",
+        "The codebase is built to extend as the business grows.",
+      ],
+    },
   },
   "custom-software": {
     intro:
@@ -83,5 +134,15 @@ export const servicePageCopy: Record<string, ServicePageCopy> = {
     metaTitle: "Custom Software Development",
     metaDescription:
       "Custom internal tools, business applications and dashboards built around your process. Custom software development in Dayton, Ohio.",
+    example: {
+      scenario:
+        "A critical process lived in a fragile spreadsheet only one person understood.",
+      steps: [
+        "We turned it into a proper internal tool the whole team can use.",
+        "Validation and permissions replaced error-prone manual edits.",
+        "AI handles the tedious classification step in the middle.",
+        "It's documented and built to be maintained, not a black box.",
+      ],
+    },
   },
 };

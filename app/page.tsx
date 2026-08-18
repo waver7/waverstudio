@@ -10,6 +10,7 @@ import { AIFrontDesk } from "@/components/sections/AIFrontDesk";
 import { Process } from "@/components/sections/Process";
 import { WhyWaver } from "@/components/sections/WhyWaver";
 import { HowWeWork } from "@/components/sections/HowWeWork";
+import { FounderNote } from "@/components/sections/FounderNote";
 import { TechSection } from "@/components/sections/TechSection";
 import { ExampleProjects } from "@/components/sections/ExampleProjects";
 import { LocalSection } from "@/components/sections/LocalSection";
@@ -36,6 +37,7 @@ export default function HomePage() {
         <Process />
         <WhyWaver />
         <HowWeWork />
+        <FounderNote />
         <GradientDivider />
         <TechSection />
         <ExampleProjects />

@@ -48,6 +48,22 @@ html.wv-cursor [contenteditable="true"] {
   cursor: auto !important;
 }
 
+/* Keyboard users get a clear focus ring everywhere — essential because the
+   custom cursor hides the native pointer. Mouse clicks don't trigger it. */
+:focus-visible {
+  outline: 2px solid #a855f7;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #c77dff;
+  outline-offset: 3px;
+}
+
 ::selection {
   background: rgba(168, 85, 247, 0.35);
   color: #ffffff;

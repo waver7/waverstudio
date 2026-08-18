@@ -18,7 +18,8 @@ const config: Config = {
         ink: {
           DEFAULT: "#F7F8FA",
           secondary: "#A1A7B3",
-          muted: "#6F7683",
+          // raised from #6F7683 to clear WCAG AA (>=4.5:1) on every surface
+          muted: "#868C9C",
         },
         line: {
           DEFAULT: "rgba(255,255,255,0.08)",

@@ -9,10 +9,12 @@ export function ServiceDetail({
   service,
   intro,
   outcomes,
+  example,
 }: {
   service: Service;
   intro: string;
   outcomes: string[];
+  example?: { scenario: string; steps: string[] };
 }) {
   const Icon = service.icon;
   return (
@@ -82,6 +84,38 @@ export function ServiceDetail({
           </div>
         </div>
       </section>
+
+      {/* Example project */}
+      {example && (
+        <section className="py-16 sm:py-20">
+          <div className="shell">
+            <div className="surface overflow-hidden p-8 sm:p-10">
+              <span className="rounded-full border border-line bg-bg px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-ink-muted">
+                Example project
+              </span>
+              <p className="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-ink">
+                {example.scenario}
+              </p>
+              <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {example.steps.map((step, i) => (
+                  <li key={step} className="relative">
+                    <span className="font-mono text-xs text-brand-violet">
+                      0{i + 1}
+                    </span>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-secondary">
+                      {step}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-8 border-t border-line pt-5 text-xs text-ink-muted">
+                Illustrative of how we approach this work. We&apos;ll publish
+                named client results as they&apos;re approved.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="py-16 sm:py-20">

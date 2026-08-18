@@ -46,6 +46,8 @@ export function StickyMobileCTA() {
 
   return (
     <div
+      role="region"
+      aria-label="Get started"
       className={cn(
         "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/90 p-3 backdrop-blur-xl transition-transform duration-300 md:hidden",
         show ? "translate-y-0" : "translate-y-full",
