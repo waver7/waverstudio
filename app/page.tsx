@@ -16,6 +16,7 @@ import { LocalSection } from "@/components/sections/LocalSection";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Contact } from "@/components/sections/Contact";
+import { GradientDivider } from "@/components/ui/GradientDivider";
 import { faqLd } from "@/lib/jsonld";
 import { faqs } from "@/lib/faq";
 
@@ -31,9 +32,11 @@ export default function HomePage() {
         <BeforeAfter />
         <UseCases />
         <AIFrontDesk />
+        <GradientDivider />
         <Process />
         <WhyWaver />
         <HowWeWork />
+        <GradientDivider />
         <TechSection />
         <ExampleProjects />
         <LocalSection />
