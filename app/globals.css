@@ -115,6 +115,29 @@ html.wv-cursor [contenteditable="true"] {
   }
 }
 
+/* Infinite marquee (two copies of the track translate by -50%) */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
 /* Traveling pulse used on vertical workflow connectors */
 .flow-pulse {
   top: -1rem;

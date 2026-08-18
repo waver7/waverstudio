@@ -6,19 +6,31 @@ import { Badge } from "@/components/ui/Badge";
 import { GradientButton } from "@/components/ui/GradientButton";
 import { GradientText } from "@/components/ui/GradientText";
 import { HeroWorkflow } from "@/components/workflows/HeroWorkflow";
+import { WaveMesh } from "@/components/hero/WaveMesh";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36">
-      {/* background: grid fading into darkness + ambient brand glow */}
+    <section className="relative flex min-h-[92vh] flex-col justify-center overflow-hidden pt-28 sm:pt-32 lg:min-h-[94vh] lg:pt-40">
+      {/* background: faint grid + one soft glow; the wave mesh supplies the colour */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-        <div className="absolute inset-0 grid-lines mask-fade-b opacity-70" />
-        <div className="absolute left-1/2 top-[-10%] h-[520px] w-[820px] -translate-x-1/2 animate-glow-drift rounded-full bg-brand-violet/10 blur-[120px]" />
-        <div className="absolute right-[6%] top-[18%] h-[280px] w-[280px] rounded-full bg-brand-blue/10 blur-[100px]" />
-        <div className="absolute left-[4%] top-[36%] h-[240px] w-[240px] rounded-full bg-brand-magenta/10 blur-[100px]" />
+        <div className="absolute inset-0 grid-lines mask-fade-b opacity-40" />
+        <div className="absolute left-1/2 top-[-12%] h-[520px] w-[820px] -translate-x-1/2 animate-glow-drift rounded-full bg-brand-violet/10 blur-[130px]" />
       </div>
+
+      {/* three.js wave mesh (with static fallback) */}
+      <WaveMesh />
+
+      {/* legibility scrim so the headline stays crisp over the wave */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(80% 70% at 22% 42%, rgba(5,6,8,0.82), rgba(5,6,8,0.35) 45%, transparent 72%)",
+        }}
+      />
 
       <div className="shell grid items-center gap-12 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pb-28">
         <div className="flex flex-col items-start">
@@ -92,6 +104,11 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.2, ease }}
           className="relative"
         >
+          {/* soft glow so the card floats above the wave */}
+          <div
+            className="pointer-events-none absolute -inset-6 -z-[1] rounded-[32px] bg-brand-violet/10 blur-3xl"
+            aria-hidden
+          />
           <HeroWorkflow />
         </motion.div>
       </div>
